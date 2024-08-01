@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { padding-top: 20px; }
+    </style>
+</head>
+<body class="bg-dark ">
+      <nav>
+            <a href="{% url 'task_list' %}" class="btn btn-light">Home</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="btn btn-light">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn btn-light">Login</a>
+            {% endif %}
+        </nav>
+    <div class="container text-center text-white">
+       
+        <h1>Add Task</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary mt-3 text-center">Add Task</button>
+        </form>
+        <a href="{% url 'task_list' %}" class="btn btn-secondary mt-3 d-block text-center" >Back to Task List</a>
+    </div>
+    <footer class="bg-light text-center p-3 mt-4">
+        <p>&copy; 2024 My To-Do List</p>
+    </footer>
+</body>
+</html>
